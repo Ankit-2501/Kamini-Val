@@ -17,21 +17,35 @@
     }
 
     .box {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       padding: 40px;
       border-radius: 22px;
       text-align: center;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      width: 85%;
+      max-width: 350px;
     }
 
     button {
-      padding: 15px 30px;
-      font-size: 20px;
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      font-size: 18px;
       border: none;
       border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .play {
       background: #673ab7;
       color: white;
-      cursor: pointer;
+    }
+
+    .next {
+      background: #e91e63;
+      color: white;
+      display: none;
     }
   </style>
 </head>
@@ -44,18 +58,24 @@
 
   <div class="box">
     <h1>Hi Kamini 💕</h1>
-    <p>Tap to begin…</p>
-    <button onclick="startMusic()">▶ Play Music 🎶</button>
+    <p>Start the music first 🎶</p>
+
+    <button class="play" onclick="playMusic()">▶ Play Music</button>
+    <button class="next" id="nextBtn" onclick="goNext()">Continue 💖</button>
   </div>
 
   <script>
-    function startMusic() {
+    function playMusic() {
       const music = document.getElementById("bgMusic");
       music.play().then(() => {
-        window.location.href = "valentine.html";
+        document.getElementById("nextBtn").style.display = "block";
       }).catch(() => {
-        alert("Tap again to allow music 🎵");
+        alert("Tap Play again to allow music 🎵");
       });
+    }
+
+    function goNext() {
+      window.location.href = "valentine.html";
     }
   </script>
 
