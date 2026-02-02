@@ -14,7 +14,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     .box {
@@ -43,10 +43,13 @@
 
     .play { background: #673ab7; color: white; }
     .yes { background: #e91e63; color: white; }
+
+    /* Fake NO button */
     .no {
-      background: #999;
+      background: #aaa;
       color: white;
       position: absolute;
+      pointer-events: none; /* NOT clickable */
     }
 
     .hidden { display: none; }
@@ -59,10 +62,19 @@
       font-size: 16px;
     }
 
+    /* Floating kisses */
     .kiss {
       position: absolute;
       font-size: 26px;
       animation: float 6s linear infinite;
+      pointer-events: none;
+    }
+
+    /* Flower burst */
+    .flower {
+      position: absolute;
+      font-size: 22px;
+      animation: burst 2.5s ease-out forwards;
       pointer-events: none;
     }
 
@@ -71,12 +83,23 @@
       50% { opacity: 1; }
       100% { transform: translateY(-10vh); opacity: 0; }
     }
+
+    @keyframes burst {
+      0% {
+        transform: scale(0) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5) translateY(-120px);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- SINGLE MUSIC FILE -->
+  <!-- MUSIC -->
   <audio id="music" loop>
     <source src="khat.mp3" type="audio/mpeg">
   </audio>
@@ -94,7 +117,7 @@
     <p>Will you be my Valentine?</p>
 
     <button class="yes" onclick="sayYes()">YES 💞</button>
-    <button class="no" id="noBtn" onmouseover="moveNo()">NO 😜</button>
+    <button class="no" id="noBtn">NO 😜</button>
   </div>
 
   <!-- PAGE 3 -->
@@ -126,24 +149,44 @@ to another universal plane. 😘
 
   <script>
     const music = document.getElementById("music");
+    const noBtn = document.getElementById("noBtn");
 
     function startMusic() {
       music.play();
       page1.classList.add("hidden");
       page2.classList.remove("hidden");
+      floatNo(); // start fake floating NO
     }
 
     function sayYes() {
       page2.classList.add("hidden");
       page3.classList.remove("hidden");
+      burstFlowers();
     }
 
-    function moveNo() {
-      noBtn.style.left = Math.random() * 70 + "vw";
-      noBtn.style.top = Math.random() * 70 + "vh";
+    /* Fake floating NO button */
+    function floatNo() {
+      setInterval(() => {
+        noBtn.style.left = Math.random() * 70 + "vw";
+        noBtn.style.top = Math.random() * 60 + "vh";
+      }, 600);
     }
 
-    // floating kisses
+    /* Flower burst on YES */
+    function burstFlowers() {
+      const flowers = ["🌸","🌺","🌼","💐","🌷"];
+      for (let i = 0; i < 40; i++) {
+        const flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.top = "70vh";
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 2500);
+      }
+    }
+
+    /* Floating kisses continuously */
     setInterval(() => {
       const kiss = document.createElement("div");
       kiss.className = "kiss";
@@ -151,7 +194,7 @@ to another universal plane. 😘
       kiss.style.left = Math.random() * 100 + "vw";
       document.body.appendChild(kiss);
       setTimeout(() => kiss.remove(), 6000);
-    }, 600);
+    }, 700);
   </script>
 
 </body>
