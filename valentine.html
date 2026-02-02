@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine? 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fad0c4, #ff9a9e);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.92);
+      padding: 35px;
+      border-radius: 22px;
+      text-align: center;
+      max-width: 92%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #e91e63;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background: #e91e63;
+      color: white;
+    }
+
+    #noBtn {
+      background: #999;
+      color: white;
+      position: absolute;
+    }
+
+    .shayari {
+      margin-top: 25px;
+      font-style: italic;
+      white-space: pre-line;
+      color: #555;
+      font-size: 17px;
+    }
+
+    .kiss {
+      position: absolute;
+      font-size: 26px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container" id="box">
+    <h1>Kamini 💕</h1>
+    <p>Will you be my Valentine?</p>
+
+    <div>
+      <button id="yesBtn" onclick="sayYes()">YES 💖</button>
+      <button id="noBtn" onmouseover="moveNo()">NO 😜</button>
+    </div>
+
+    <div class="shayari">
+It's not the rain,  
+It's not the Nerine,  
+It's not the sandwich Rueben,  
+Which eases my pain.
+
+You know what I found serene,  
+In a world full of lame?  
+It's you. Yes it's you. It's your name.
+
+Who makes me insane,  
+It's you who numb my forebrain,  
+It's you who makes me sane.
+
+So keep me in your heartly chain,  
+I want "us" for forever in love lane,  
+I want to kiss you in every terrain.
+
+Come, hold me and take me  
+to another universal plane. 😘
+    </div>
+  </div>
+
+  <script>
+    function sayYes() {
+      document.getElementById("box").innerHTML = `
+        <h1>Muna 💞</h1>
+        <p>I knew it 😍</p>
+        <p>Forever sounds perfect with you.</p>
+      `;
+    }
+
+    function moveNo() {
+      const btn = document.getElementById("noBtn");
+      btn.style.left = Math.random() * 80 + "vw";
+      btn.style.top = Math.random() * 80 + "vh";
+    }
+
+    setInterval(() => {
+      const kiss = document.createElement("div");
+      kiss.className = "kiss";
+      kiss.innerHTML = "😘";
+      kiss.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(kiss);
+      setTimeout(() => kiss.remove(), 6000);
+    }, 500);
+  </script>
+
+</body>
+</html>
