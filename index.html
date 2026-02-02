@@ -1,180 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>For Kamini 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
-      min-height: 100vh;
+      height: 100vh;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
     }
 
-    .container {
-      text-align: center;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 35px;
+    .box {
+      background: rgba(255,255,255,0.9);
+      padding: 40px;
       border-radius: 22px;
+      text-align: center;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      max-width: 92%;
-      position: relative;
-      z-index: 2;
-    }
-
-    h1 {
-      color: #e91e63;
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 19px;
-      color: #444;
-      line-height: 1.5;
     }
 
     button {
-      padding: 12px 26px;
-      font-size: 18px;
+      padding: 15px 30px;
+      font-size: 20px;
       border: none;
       border-radius: 30px;
-      cursor: pointer;
-      margin: 10px;
-      transition: 0.3s;
-    }
-
-    .play-btn {
       background: #673ab7;
       color: white;
-    }
-
-    #yesBtn {
-      background: #e91e63;
-      color: white;
-    }
-
-    #yesBtn:hover {
-      background: #d81b60;
-    }
-
-    #noBtn {
-      background: #999;
-      color: white;
-      position: absolute;
-    }
-
-    .shayari {
-      margin-top: 30px;
-      font-style: italic;
-      font-size: 17px;
-      color: #555;
-      white-space: pre-line;
-    }
-
-    .kiss {
-      position: absolute;
-      font-size: 26px;
-      animation: float 6s linear infinite;
-      opacity: 0.9;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(0.7);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Music -->
   <audio id="bgMusic" loop>
-    <source src="./khat.mp3" type="audio/mpeg">
+    <source src="khat.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="container" id="mainBox">
-
-    <!-- PLAY MUSIC FIRST -->
-    <button class="play-btn" onclick="document.getElementById('bgMusic').play()">
-      ▶ Play Music 🎶
-    </button>
-
-    <h1>Kamini 💕</h1>
-    <p>Will you be my Valentine?</p>
-
-    <div>
-      <button id="yesBtn" onclick="sayYes()">YES 💖</button>
-      <button id="noBtn" onmouseover="moveNo()">NO 😜</button>
-    </div>
-
-    <!-- SHAYARI -->
-    <div class="shayari">
-It's not the rain,  
-It's not the Nerine,  
-It's not the sandwich Rueben,  
-Which eases my pain.
-
-You know what I found serene,  
-In a world full of lame?  
-It's you. Yes, it's you. It's your name.
-
-Who makes me insane,  
-It's you who numb my forebrain,  
-It's you who makes me sane.
-
-So keep me in your heartly chain,  
-I want "us" forever in love lane,  
-I want to kiss you in every terrain.
-
-Come, hold me and take me  
-to another universal plane. 😘
-    </div>
-
+  <div class="box">
+    <h1>Hi Kamini 💕</h1>
+    <p>Tap to begin…</p>
+    <button onclick="startMusic()">▶ Play Music 🎶</button>
   </div>
 
   <script>
-    function sayYes() {
-      document.getElementById("mainBox").innerHTML = `
-        <h1>Muna 💞</h1>
-        <p>I knew you’d say YES 😍</p>
-        <p>You are my calm and my chaos.</p>
-        <p>Forever sounds perfect with you 💖</p>
-      `;
+    function startMusic() {
+      const music = document.getElementById("bgMusic");
+      music.play().then(() => {
+        window.location.href = "valentine.html";
+      }).catch(() => {
+        alert("Tap again to allow music 🎵");
+      });
     }
-
-    function moveNo() {
-      const btn = document.getElementById("noBtn");
-      btn.style.left = Math.random() * 80 + "vw";
-      btn.style.top = Math.random() * 80 + "vh";
-    }
-
-    // Floating kiss emojis
-    setInterval(() => {
-      const kiss = document.createElement("div");
-      kiss.className = "kiss";
-      kiss.innerHTML = "😘";
-      kiss.style.left = Math.random() * 100 + "vw";
-      kiss.style.animationDuration = (Math.random() * 3 + 3) + "s";
-      document.body.appendChild(kiss);
-
-      setTimeout(() => kiss.remove(), 6000);
-    }, 500);
   </script>
 
 </body>
