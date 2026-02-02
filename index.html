@@ -19,16 +19,17 @@
 
     .container {
       text-align: center;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       padding: 40px;
       border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       z-index: 2;
+      max-width: 90%;
     }
 
     h1 {
       color: #e91e63;
-      font-size: 40px;
+      font-size: 38px;
       margin-bottom: 10px;
     }
 
@@ -42,7 +43,7 @@
     }
 
     button {
-      padding: 12px 25px;
+      padding: 12px 28px;
       font-size: 18px;
       border: none;
       border-radius: 30px;
@@ -61,21 +62,21 @@
     }
 
     #noBtn {
-      background: #aaa;
+      background: #999;
       color: white;
       position: absolute;
     }
 
     .heart {
       position: absolute;
-      color: #ff4d6d;
       font-size: 24px;
       animation: float 6s linear infinite;
+      opacity: 0.8;
     }
 
     @keyframes float {
       0% {
-        transform: translateY(100vh) scale(0.8);
+        transform: translateY(100vh) scale(0.7);
         opacity: 0;
       }
       50% {
@@ -90,13 +91,15 @@
 </head>
 <body>
 
+  <!-- Music: Khat – Navjot Ahuja (preview-style link) -->
   <audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/30/audio_1b8e6c6f0b.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="container">
+  <div class="container" id="mainBox">
     <h1>Kamini 💕</h1>
     <p>Will you be my Valentine?</p>
+    <p>You make my ordinary days feel special 🌸</p>
 
     <div class="buttons">
       <button id="yesBtn" onclick="sayYes()">YES 💖</button>
@@ -105,16 +108,17 @@
   </div>
 
   <script>
-    // Play music on first click
+    // Start music on first tap
     document.body.addEventListener("click", () => {
       document.getElementById("bgMusic").play();
     }, { once: true });
 
     function sayYes() {
-      document.querySelector(".container").innerHTML = `
-        <h1>Yayyy 💞</h1>
-        <p>You just made my heart smile, Kamini 💖</p>
-        <p>Happy Valentine’s Day 🌹</p>
+      document.getElementById("mainBox").innerHTML = `
+        <h1>Muna 💞</h1>
+        <p>I knew you’d say YES 😍</p>
+        <p>You are my favorite feeling.</p>
+        <p>Happy Valentine’s Day 💖🌹</p>
       `;
     }
 
@@ -133,9 +137,7 @@
       heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
       document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
+      setTimeout(() => heart.remove(), 6000);
     }, 400);
   </script>
 
